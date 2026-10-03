@@ -16,7 +16,7 @@ The intended public hosts are `archive.v1.theqrl.org` for the explorer and `data
 
 ## Current files
 
-`public/` is a dependency-free Pages placeholder. It says that no rehearsal release or mainnet archive is available yet. Deploy `public/` as the Pages output directory. `REHEARSAL-STATUS.md` records the current state; the [Pages/R2 provisioning guide](https://github.com/theQRL/qrl-v1-archive/blob/main/docs/pages-r2-placeholder.md) describes the matching R2 smoke objects and checks. No live node or API is used by this placeholder.
+`public/` is a dependency-free Pages placeholder. It says that no rehearsal release or mainnet archive is available yet. Deploy `public/` as the Pages output directory. `REHEARSAL-STATUS.md` records the current state; the sibling archive repository contains the matching unsigned data-domain warning assets. No live node or API is used by this placeholder.
 
 ## Siblings
 
