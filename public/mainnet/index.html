@@ -1,20 +1,48 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-brand="dawn" data-theme="qrl-dawn" class="scheme-only-dark antialiased">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noindex,nofollow,noarchive">
+    <meta name="theme-color" content="#0a1720">
     <title>Mainnet archive unavailable | QRL v1 testnet rehearsal</title>
+    <link rel="preload" href="/assets/fonts/archivo.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/source-sans-3.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="/assets/site.css">
   </head>
-  <body>
-    <header class="site-header"><a class="brand" href="/">QRL <span>v1 archive</span></a><span class="status">Setup in progress</span></header>
-    <main class="page narrow">
-      <p class="eyebrow">Testnet archive rehearsal</p>
-      <h1>No mainnet archive is available</h1>
-      <p class="warning"><strong>The QRL v1 mainnet has not been retired.</strong> This site is preparing a testnet-only rehearsal. No testnet placeholder or lab data should be interpreted as mainnet history.</p>
-      <p><a href="/">Return to the archive status page</a>.</p>
+  <body class="flex min-h-dvh flex-col">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <div class="container-site navbar min-h-16 gap-3">
+        <div class="navbar-start min-w-0">
+          <a href="/" aria-label="QRL v1 archive home" class="flex min-w-0 items-center gap-3">
+            <img src="/assets/qrl-logo.svg" width="96" height="34" alt="QRL" class="h-8 w-auto shrink-0">
+            <span class="hidden border-l border-base-content/20 pl-3 font-display font-semibold tracking-tight sm:inline">v1 archive</span>
+          </a>
+        </div>
+        <div class="navbar-end"><span class="badge badge-warning badge-outline min-h-7 whitespace-nowrap text-base sm:text-sm">Setup in progress</span></div>
+      </div>
+    </header>
+
+    <main id="main" class="isolate flex flex-1 flex-col">
+      <section class="hero-surface flex-1">
+        <div class="container-site py-12 sm:py-section">
+          <p class="kicker">Testnet archive rehearsal</p>
+          <h1 class="mt-3 max-w-[18ch] font-display text-hero font-semibold tracking-tight text-balance">No mainnet archive is available</h1>
+          <p class="mt-5 max-w-[56ch] text-lead text-base-content/75 text-pretty">This hostname is being prepared for the QRL v1 archive. It does not serve mainnet history.</p>
+          <div role="alert" class="alert alert-warning alert-outline text-base mt-8 max-w-4xl">
+            <div>
+              <p class="font-semibold">The QRL v1 mainnet has not been retired.</p>
+              <p class="mt-1 text-pretty">This site is preparing a testnet-only rehearsal. No testnet placeholder or lab data should be interpreted as mainnet history.</p>
+            </div>
+          </div>
+          <a class="btn btn-outline mt-8 min-h-12 sm:min-h-10" href="/">Return to archive status</a>
+        </div>
+      </section>
     </main>
-    <footer class="site-footer">No release has been signed or published.</footer>
+
+    <footer class="footer footer-center border-t border-base-content/10 bg-base-200 p-6 text-base text-base-content/60 sm:text-sm">
+      <aside><p>No release has been signed or published.</p></aside>
+    </footer>
   </body>
 </html>

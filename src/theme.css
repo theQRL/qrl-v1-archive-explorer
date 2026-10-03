@@ -1,0 +1,185 @@
+@import "tailwindcss" source(none);
+@plugin "daisyui" {
+  themes: false;
+}
+@source "../public/**/*.html";
+/* The private R2 warning page embeds this CSS and uses these extra classes. */
+@source inline("font-mono gap-1 max-w-3xl menu p-0");
+
+/* Quantum Dawn from theQRL/qrl-vue-vite-tailwind-daisyui at 26b1214 (MIT).
+   The source project names the theme qrl-dawn. */
+@font-face {
+  font-family: "Archivo";
+  src: url("/assets/fonts/archivo.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Source Sans 3";
+  src: url("/assets/fonts/source-sans-3.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+}
+
+@theme {
+  --font-display: "Archivo", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Source Sans 3", ui-sans-serif, system-ui, sans-serif;
+  --text-hero: clamp(2.15rem, 1.2rem + 4.2vw, 4.75rem);
+  --text-h2: clamp(1.6rem, 1.25rem + 1.5vw, 2.4rem);
+  --text-lead: clamp(1.05rem, 0.98rem + 0.4vw, 1.3rem);
+  --spacing-section: clamp(3.5rem, 2rem + 6vw, 7rem);
+}
+
+@plugin "daisyui/theme" {
+  name: "qrl-dawn";
+  default: true;
+  prefersdark: true;
+  color-scheme: dark;
+  --color-base-100: #0a1720;
+  --color-base-200: #0e1f2b;
+  --color-base-300: #14293a;
+  --color-base-content: #e6eef5;
+  --color-primary: #ffa729;
+  --color-primary-content: #0a1720;
+  --color-secondary: #3fa9ff;
+  --color-secondary-content: #04223c;
+  --color-accent: #8b76ff;
+  --color-accent-content: #120a2e;
+  --color-neutral: #14293a;
+  --color-neutral-content: #e6eef5;
+  --color-info: #25c8d8;
+  --color-info-content: #042227;
+  --color-success: #4fb477;
+  --color-success-content: #04140b;
+  --color-warning: #ffa729;
+  --color-warning-content: #0a1720;
+  --color-error: #e85c41;
+  --color-error-content: #1a0500;
+  --radius-selector: 0.5rem;
+  --radius-field: 0.5rem;
+  --radius-box: 0.875rem;
+  --border: 1px;
+}
+
+/* Keep the button and badge treatments used by the source component library. */
+@utility btn {
+  &:hover {
+    --btn-bg: color-mix(in oklab, var(--btn-color, var(--color-base-200)), var(--color-base-content) 14%);
+    --btn-border: color-mix(in oklab, var(--btn-bg), var(--color-base-content) 30%);
+  }
+}
+
+@utility btn-outline {
+  &:hover {
+    --btn-border: var(--btn-color, var(--color-base-content));
+  }
+}
+
+@utility btn-ghost {
+  &:hover {
+    --btn-border: #0000;
+  }
+}
+
+@utility badge {
+  &:not(.badge-outline, .badge-dash, .badge-soft, .badge-ghost) {
+    border-color: var(--badge-color, color-mix(in oklab, var(--color-base-content) 25%, transparent));
+  }
+}
+
+@layer base {
+  html {
+    font-family: var(--font-sans);
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    min-height: 100vh;
+    background: var(--color-base-100);
+    color: var(--color-base-content);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    line-height: 1.08;
+    letter-spacing: -0.01em;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  .container-site {
+    width: 100%;
+    max-width: 78rem;
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+  }
+
+  .kicker,
+  .section-eyebrow {
+    color: var(--color-primary);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .section-heading {
+    font-size: var(--text-h2);
+    font-weight: 700;
+  }
+
+  .hero-surface {
+    position: relative;
+    overflow: clip;
+  }
+
+  [data-theme^="qrl-dawn"] .hero-surface::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background: radial-gradient(120% 130% at 88% -10%, color-mix(in oklab, var(--color-primary) 10%, transparent) 0%, transparent 46%),
+      radial-gradient(100% 120% at 10% 110%, color-mix(in oklab, var(--color-secondary) 8%, transparent) 0%, transparent 50%);
+  }
+
+  .hero-surface > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .skip-link {
+    position: fixed;
+    top: -100%;
+    left: 1rem;
+    z-index: 100;
+    border-radius: var(--radius-field);
+    background: var(--color-primary);
+    color: var(--color-primary-content);
+    padding: 0.6rem 1rem;
+    font-weight: 600;
+  }
+
+  .skip-link:focus {
+    top: 1rem;
+  }
+
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    border-bottom: 1px solid color-mix(in oklab, var(--color-base-content) 12%, transparent);
+    background: color-mix(in oklab, var(--color-base-100) 92%, transparent);
+    backdrop-filter: blur(12px);
+  }
+}

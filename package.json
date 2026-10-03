@@ -1,0 +1,13 @@
+{
+  "name": "qrl-v1-archive-explorer-placeholder",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build:css": "tailwindcss -i ./src/theme.css -o ./public/assets/site.css --minify"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "4.3.3",
+    "daisyui": "5.7.43",
+    "tailwindcss": "4.3.3"
+  }
+}
