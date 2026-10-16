@@ -3,6 +3,7 @@
   themes: false;
 }
 @source "../public/**/*.html";
+@source "./snapshot-page.mjs";
 /* The private R2 warning page embeds this CSS and uses these extra classes. */
 @source inline("font-mono gap-1 max-w-3xl menu p-0");
 

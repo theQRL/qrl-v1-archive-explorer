@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en" data-brand="dawn" data-theme="qrl-dawn" class="scheme-only-dark antialiased">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex,nofollow,noarchive">
+    <meta name="theme-color" content="#0a1720">
+    <title>Explore the testnet archive | QRL v1 testnet archive rehearsal</title>
+    <link rel="preload" href="/assets/fonts/archivo.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/source-sans-3.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/assets/site.css">
+  </head>
+  <body class="flex min-h-dvh flex-col" data-snapshot-page="explore">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <div class="container-site navbar min-h-16 gap-3">
+        <div class="navbar-start min-w-0">
+          <a href="/" aria-label="QRL v1 archive home" class="flex min-w-0 items-center gap-3">
+            <img src="/assets/qrl-logo.svg" width="96" height="34" alt="QRL" class="h-8 w-auto shrink-0">
+            <span class="hidden border-l border-base-content/20 pl-3 font-display font-semibold tracking-tight sm:inline">v1 archive</span>
+          </a>
+        </div>
+        <div class="navbar-end"><span id="snapshot-badge" class="badge badge-warning badge-outline min-h-7 whitespace-nowrap text-base sm:text-sm">Checking release</span></div>
+      </div>
+    </header>
+
+    <main id="main" class="isolate flex-1">
+      <section class="hero-surface border-b border-base-content/10">
+        <div class="container-site py-12 sm:py-16">
+          <p class="kicker">Testnet archive rehearsal</p>
+          <h1 class="mt-3 max-w-[22ch] font-display text-hero font-semibold tracking-tight text-balance">Explore the testnet archive</h1>
+          <p id="page-intro" class="mt-5 max-w-[64ch] text-lead text-base-content/75 text-pretty">Browse a point-in-time testnet snapshot after this page checks its release details.</p>
+          <div role="alert" class="alert alert-warning alert-outline mt-8 max-w-4xl">
+            <div>
+              <p id="snapshot-alert-title" class="font-semibold">This is a testnet archive rehearsal.</p>
+              <p id="snapshot-alert-description" class="mt-1">This page checks the snapshot release before enabling read-only lookups. The public QRL v1 testnet and mainnet remain live.</p>
+            </div>
+          </div>
+          <nav class="mt-8 flex flex-wrap gap-2" aria-label="Testnet archive pages">
+            <a class="btn btn-outline btn-sm min-h-12 sm:min-h-9" href="/testnet/">Testnet status</a>
+            <a class="btn btn-outline btn-sm min-h-12 sm:min-h-9" href="/testnet/explore/">Lookups</a>
+            <a class="btn btn-outline btn-sm min-h-12 sm:min-h-9" href="/testnet/release/">Release status</a>
+          </nav>
+        </div>
+      </section>
+      
+      <section class="container-site py-12 sm:py-16" aria-labelledby="lookup-routes">
+        <p class="section-eyebrow">Lookup routes</p>
+        <h2 id="lookup-routes" class="section-heading mt-2">Choose a record type</h2>
+        <div class="mt-8 grid gap-4 md:grid-cols-3">
+          <article class="card card-border bg-base-200">
+            <div class="card-body">
+              <h3 class="card-title">Blocks</h3>
+              <p class="text-base-content/75">Find a block by height or hash in an operator-verified snapshot release.</p>
+              <div class="card-actions mt-3"><a class="btn btn-outline" href="/testnet/blocks/">View block lookup</a></div>
+            </div>
+          </article>
+          <article class="card card-border bg-base-200">
+            <div class="card-body">
+              <h3 class="card-title">Transactions</h3>
+              <p class="text-base-content/75">Find a transaction by its hash, including multi-output transfers.</p>
+              <div class="card-actions mt-3"><a class="btn btn-outline" href="/testnet/transactions/">View transaction lookup</a></div>
+            </div>
+          </article>
+          <article class="card card-border bg-base-200">
+            <div class="card-body">
+              <h3 class="card-title">Addresses</h3>
+              <p class="text-base-content/75">View archived activity and a balance at the release cutoff.</p>
+              <div class="card-actions mt-3"><a class="btn btn-outline" href="/testnet/addresses/">View address lookup</a></div>
+            </div>
+          </article>
+        </div>
+        <p class="mt-6 text-sm text-base-content/60">No live balances, confirmations or network status will be inferred from this archive.</p>
+      </section>
+      <section id="snapshot-result" class="container-site pb-12 sm:pb-16" hidden aria-live="polite"></section>
+    </main>
+
+    <footer class="footer footer-center border-t border-base-content/10 bg-base-200 p-6 text-base text-base-content/60 sm:text-sm">
+      <aside><p id="snapshot-footer">QRL v1 testnet archive rehearsal. Checking snapshot release details.</p></aside>
+    </footer>
+    <script type="module" src="/assets/snapshot-page.js"></script>
+  </body>
+</html>

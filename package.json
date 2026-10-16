@@ -3,7 +3,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build:css": "tailwindcss -i ./src/theme.css -o ./public/assets/site.css --minify"
+    "build:pages": "node ./src/build-pages.mjs",
+    "build:css": "tailwindcss -i ./src/theme.css -o ./public/assets/site.css --minify",
+    "build": "npm run build:pages && npm run build:css"
   },
   "devDependencies": {
     "@tailwindcss/cli": "4.3.3",

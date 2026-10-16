@@ -21,7 +21,7 @@
           </a>
         </div>
         <div class="navbar-end">
-          <span class="badge badge-warning badge-outline min-h-7 whitespace-nowrap text-base sm:text-sm">Setup in progress</span>
+          <span class="badge badge-warning badge-outline min-h-7 whitespace-nowrap text-base sm:text-sm">Testnet snapshot</span>
         </div>
       </div>
     </header>
@@ -31,11 +31,11 @@
         <div class="container-site py-12 sm:py-section">
           <p class="kicker">Archive rehearsal</p>
           <h1 class="mt-3 max-w-[18ch] font-display text-hero font-semibold tracking-tight text-balance">Testnet archive rehearsal</h1>
-          <p class="mt-5 max-w-[56ch] text-lead text-base-content/75 text-pretty">We are preparing a permanent QRL v1 archive and testing the process on a disposable testnet branch. No archive release is available yet.</p>
+          <p class="mt-5 max-w-[56ch] text-lead text-base-content/75 text-pretty">Explore a signed, read-only QRL v1 testnet snapshot through block 1,620,000 while we rehearse permanent archival. The public testnet and mainnet continue running.</p>
           <div role="alert" class="alert alert-warning alert-outline text-base mt-8 max-w-4xl">
             <div>
-              <p class="font-semibold">Not the QRL v1 mainnet archive.</p>
-              <p class="mt-1 text-pretty">This site is a public placeholder while the archive process is tested. The public testnet and mainnet remain live.</p>
+              <p class="font-semibold">This is a point-in-time testnet release, not the QRL v1 mainnet archive.</p>
+              <p class="mt-1 text-pretty">It records testnet only through block 1,620,000. Later blocks and current balances are outside this release.</p>
             </div>
           </div>
           <nav class="mt-8 flex flex-wrap gap-3" aria-label="Archive status links">
@@ -47,24 +47,24 @@
 
       <section class="container-site py-12 sm:py-16" aria-labelledby="current-status">
         <p class="section-eyebrow">Current state</p>
-        <h2 id="current-status" class="section-heading mt-2 font-semibold tracking-tight text-balance">What this site can show today</h2>
+          <h2 id="current-status" class="section-heading mt-2 font-semibold tracking-tight text-balance">What this release contains</h2>
         <dl class="mt-8 grid gap-4 md:grid-cols-3">
           <div class="card border border-base-content/10 bg-base-200">
             <div class="card-body gap-3">
-              <dt class="card-title font-semibold">No archive release is available.</dt>
-              <dd class="text-base text-base-content/75 text-pretty sm:text-sm">There is no published lab run, fork height or terminal block to inspect.</dd>
+              <dt class="card-title font-semibold">Signed testnet snapshot.</dt>
+              <dd class="text-base text-base-content/75 text-pretty sm:text-sm">The release records blocks from genesis through height 1,620,000. Download its manifest and verification details from the release page.</dd>
             </div>
           </div>
           <div class="card border border-base-content/10 bg-base-200">
             <div class="card-body gap-3">
-              <dt class="card-title font-semibold">No balance or finality claim.</dt>
-              <dd class="text-base text-base-content/75 text-pretty sm:text-sm">Do not use this site as evidence of current or historical QRL balances.</dd>
+              <dt class="card-title font-semibold">Read-only historical lookups.</dt>
+              <dd class="text-base text-base-content/75 text-pretty sm:text-sm">Find blocks, transactions and address activity. Any balance shown is at the snapshot cutoff, never a live balance.</dd>
             </div>
           </div>
           <div class="card border border-base-content/10 bg-base-200">
             <div class="card-body gap-3">
               <dt class="card-title font-semibold">Networks remain live.</dt>
-              <dd class="text-base text-base-content/75 text-pretty sm:text-sm">This placeholder does not change the public testnet, mainnet or their explorers.</dd>
+              <dd class="text-base text-base-content/75 text-pretty sm:text-sm">This release does not stop the public testnet, mainnet or their explorers.</dd>
             </div>
           </div>
         </dl>
@@ -73,19 +73,19 @@
       <section class="border-t border-base-content/10 py-12 sm:py-16" aria-labelledby="next-steps">
         <div class="container-site">
           <p class="section-eyebrow">Next</p>
-          <h2 id="next-steps" class="section-heading mt-2 font-semibold tracking-tight text-balance">What is being prepared</h2>
-          <p class="mt-4 max-w-[56ch] text-base text-base-content/75 text-pretty">Two isolated testnet rehearsals will test export, independent verification, signed publication and recovery. Rehearsal data will be labelled as a private lab branch when it exists.</p>
+          <h2 id="next-steps" class="section-heading mt-2 font-semibold tracking-tight text-balance">The rehearsal continues</h2>
+          <p class="mt-4 max-w-[56ch] text-base text-base-content/75 text-pretty">This first public snapshot lets us test signed publication and a node-free explorer. Separate isolated rehearsals will test terminal capture, recovery and infrastructure shutdown before any mainnet retirement decision.</p>
           <div class="mt-6 flex flex-wrap gap-3">
             <a class="btn btn-outline btn-sm min-h-12 sm:min-h-9" href="https://github.com/theQRL/qrl-v1-archive">View the archive project</a>
-            <a class="btn btn-outline btn-sm min-h-12 sm:min-h-9" href="https://data.v1.theqrl.org/index.html">View the data warning</a>
+            <a class="btn btn-outline btn-sm min-h-12 sm:min-h-9" href="/testnet/release/">Verify the release</a>
           </div>
-          <p class="mt-5 max-w-[56ch] text-base text-base-content/60 text-pretty sm:text-sm">The linked data objects are unsigned transport tests. They are not blockchain data.</p>
+          <p class="mt-5 max-w-[56ch] text-base text-base-content/60 text-pretty sm:text-sm">The release page links the signed manifest, signatures and pinned public key. Browser lookups check file hashes; independent ML-DSA verification is available with qrlft.</p>
         </div>
       </section>
     </main>
 
     <footer class="footer footer-center border-t border-base-content/10 bg-base-200 p-6 text-base text-base-content/60 sm:text-sm">
-      <aside><p>QRL v1 archive preparation. No release has been signed or published.</p></aside>
+      <aside><p>QRL v1 testnet archive rehearsal. Signed snapshot through block 1,620,000; public networks remain live.</p></aside>
     </footer>
   </body>
 </html>
