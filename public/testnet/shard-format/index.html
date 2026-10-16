@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang="en" data-brand="dawn" data-theme="qrl-dawn" class="scheme-only-dark antialiased">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex,nofollow,noarchive">
+    <meta name="theme-color" content="#0a1720">
+    <title>Reconstruct the block history | QRL v1 testnet archive rehearsal</title>
+    <link rel="preload" href="/assets/fonts/archivo.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/source-sans-3.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/assets/site.css">
+  </head>
+  <body class="flex min-h-dvh flex-col" data-snapshot-page="shard-format">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <div class="container-site navbar min-h-16 gap-3">
+        <div class="navbar-start min-w-0">
+          <a href="/" aria-label="QRL v1 archive home" class="flex min-w-0 items-center gap-3">
+            <img src="/assets/qrl-logo.svg" width="96" height="34" alt="QRL" class="h-8 w-auto shrink-0">
+            <span class="hidden border-l border-base-content/20 pl-3 font-display font-semibold tracking-tight sm:inline">v1 archive</span>
+          </a>
+        </div>
+        <div class="navbar-end"><span id="snapshot-badge" class="badge badge-warning badge-outline min-h-7 whitespace-nowrap text-base sm:text-sm">Checking release</span></div>
+      </div>
+    </header>
+
+    <main id="main" class="isolate flex-1">
+      <section class="hero-surface border-b border-base-content/10">
+        <div class="container-site py-12 sm:py-16">
+          <p class="kicker">Testnet archive rehearsal</p>
+          <h1 class="mt-3 max-w-[22ch] font-display text-hero font-semibold tracking-tight text-balance">Reconstruct the block history</h1>
+          <p id="page-intro" class="mt-5 max-w-[64ch] text-lead text-base-content/75 text-pretty">Read and verify every canonical block shard, then recover the exact stored protobuf bytes for each testnet block through height 1,620,000.</p>
+          <div role="alert" class="alert alert-warning alert-outline mt-8 max-w-4xl">
+            <div>
+              <p id="snapshot-alert-title" class="font-semibold">This is a testnet archive rehearsal.</p>
+              <p id="snapshot-alert-description" class="mt-1">This page checks the snapshot release before enabling read-only lookups. The public QRL v1 testnet and mainnet remain live.</p>
+            </div>
+          </div>
+          <nav class="mt-8 flex flex-wrap gap-2" aria-label="Testnet archive pages">
+            <a class="btn btn-outline btn-sm min-h-12 sm:min-h-9" href="/testnet/">Testnet status</a>
+            <a class="btn btn-outline btn-sm min-h-12 sm:min-h-9" href="/testnet/explore/">Lookups</a>
+            <a class="btn btn-outline btn-sm min-h-12 sm:min-h-9" href="/testnet/release/">Release status</a>
+            <a class="btn btn-outline btn-sm min-h-12 sm:min-h-9" href="/testnet/shard-format/">Shard format</a>
+          </nav>
+        </div>
+      </section>
+      <section class="container-site py-12 sm:py-16" aria-labelledby="scope">
+  <p class="section-eyebrow">Canonical block bytes</p>
+  <h2 id="scope" class="section-heading mt-2">What you can reconstruct</h2>
+  <div class="mt-6 max-w-4xl space-y-4 text-base-content/75">
+    <p>This release contains the original serialized <code>Block</code> protobuf value for every testnet height from 0 through 1,620,000. The 163 <code>.qrlblk</code> files keep those values in order. Reassembling them gives an exact-byte block history; parsing and reserializing a protobuf would not necessarily preserve its original wire bytes.</p>
+    <p>The release is a snapshot of a testnet that is still running. Height 1,620,000 is this release's cutoff, not a terminal network block. The block files do not contain a ready-to-start QRL LevelDB database or independently reconstructed account state. The separately signed SQLite and query files include balances observed from two nodes at the cutoff; raw block shards alone do not reproduce those balances. See <a class="link link-primary" href="/testnet/release/">release status</a> for the signed release and verification scope.</p>
+  </div>
+  <div class="mt-8 grid gap-4 md:grid-cols-2">
+    <div class="card card-border bg-base-200"><div class="card-body gap-2">
+      <h3 class="card-title">Download the chain files</h3>
+      <a class="link link-primary break-all" href="https://data.v1.theqrl.org/testnet/snapshots/testnet-snapshot-h1620000-8d7d8a30-r1/shards.json">Ordered shard index, shards.json</a>
+      <a class="link link-primary break-all" href="https://data.v1.theqrl.org/testnet/snapshots/testnet-snapshot-h1620000-8d7d8a30-r1/archive-inventory.json">Release inventory and whole-stream digests</a>
+      <a class="link link-primary break-all" href="https://data.v1.theqrl.org/testnet/snapshots/testnet-snapshot-h1620000-8d7d8a30-r1/r1-source-cutoff-f1620000-s1-v1-blocks-0000000000.qrlblk">First shard, heights 0–9,999</a>
+      <a class="link link-primary break-all" href="https://data.v1.theqrl.org/testnet/snapshots/testnet-snapshot-h1620000-8d7d8a30-r1/r1-source-cutoff-f1620000-s1-v1-blocks-0001620000.qrlblk">Last shard, height 1,620,000</a>
+    </div></div>
+    <div class="card card-border bg-base-200"><div class="card-body gap-2">
+      <h3 class="card-title">Check the signed release</h3>
+      <a class="link link-primary break-all" href="https://data.v1.theqrl.org/testnet/snapshots/testnet-snapshot-h1620000-8d7d8a30-r1/manifest.json">Manifest</a>
+      <a class="link link-primary break-all" href="https://data.v1.theqrl.org/testnet/snapshots/testnet-snapshot-h1620000-8d7d8a30-r1/manifest.json.sig">Manifest signature</a>
+      <a class="link link-primary break-all" href="https://github.com/theQRL/security/blob/2aef08563f4d177fb2773215a30d86029ed519f7/theqrl-release-key.pub">Pinned QRL release public key</a>
+    </div></div>
+  </div>
+</section>
+
+<section class="border-t border-base-content/10 py-12 sm:py-16" aria-labelledby="binary-layout">
+  <div class="container-site">
+    <p class="section-eyebrow">Format version 1</p>
+    <h2 id="binary-layout" class="section-heading mt-2">Read a shard</h2>
+    <p class="mt-4 max-w-4xl text-base-content/75">All integers below are unsigned and little-endian. There is no compression, padding, checksum trailer or split block. Byte lengths count bytes, not characters. A reader must reject short reads, unexpected trailing bytes, invalid lengths and a change in network or genesis identity.</p>
+    <div class="mt-6 overflow-x-auto"><table class="table table-zebra max-w-5xl">
+      <thead><tr><th>Order</th><th>Header field</th><th>Encoding</th><th>This release</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>Magic</td><td>8 ASCII bytes</td><td><code>QRLV1BLK</code></td></tr>
+        <tr><td>2</td><td>Version</td><td><code>uint32</code></td><td><code>1</code></td></tr>
+        <tr><td>3</td><td>Network ID</td><td><code>uint32</code> byte length, then 1–128 UTF-8 bytes</td><td><code>testnet</code></td></tr>
+        <tr><td>4</td><td>Genesis hash</td><td><code>uint32</code> byte length, then 32 raw bytes</td><td>Length <code>32</code>; hex <code class="break-all">d6765d6e0af7e8b25bac587279999e16bbb0bd3038445934e2d9f3b24a89041e</code></td></tr>
+        <tr><td>5</td><td>First height</td><td><code>uint64</code></td><td>Compare with the index</td></tr>
+        <tr><td>6</td><td>Last height</td><td><code>uint64</code></td><td>Compare with the index</td></tr>
+        <tr><td>7</td><td>Record count</td><td><code>uint64</code></td><td>1–10,000</td></tr>
+      </tbody>
+    </table></div>
+    <p class="mt-6 max-w-4xl text-base-content/75">Immediately after the header, repeat this record exactly <code>record count</code> times: <code>uint64 height</code>, <code>uint64 protobuf_byte_length</code>, then that many bytes of the stored QRL <code>Block</code> protobuf. The record height must match the protobuf header's <code>block_number</code>. The next record must have the next height, including across shard boundaries. Each complete shard is at most 67,108,864 bytes. The last shard has one record at height 1,620,000.</p>
+    <div class="alert alert-info alert-outline mt-8 max-w-4xl"><p>Keep the record's protobuf slice verbatim. A decoder is useful for validation and indexes, but its serialized output is not the preserved source value. Protobuf unknown fields and wire ordering can matter for exact-byte comparison.</p></div>
+  </div>
+</section>
+
+<section class="border-t border-base-content/10 py-12 sm:py-16" aria-labelledby="index-layout">
+  <div class="container-site">
+    <p class="section-eyebrow">Ordered inventory</p>
+    <h2 id="index-layout" class="section-heading mt-2">Use shards.json as the map</h2>
+    <p class="mt-4 max-w-4xl text-base-content/75"><code>shards.json</code> has schema <code>qrl.v1.archive.shards.v1</code> and format <code>qrl-v1-block-stream-v1</code>. Its <code>shards</code> array is already ordered; do not sort filenames or infer missing ranges. Each entry names a basename and gives <code>first_height</code>, <code>last_height</code>, <code>record_count</code>, <code>bytes</code>, <code>sha256</code> and <code>sha3_256</code>. Both digests cover the entire shard, including header and record framing.</p>
+    <p class="mt-4 max-w-4xl text-base-content/75">The top level pins <code>network_id</code>, <code>genesis_hash</code>, <code>fork_height</code>/<code>fork_hash</code>, <code>terminal_height</code>/<code>terminal_hash</code>, block and transaction counts, and configured shard caps. In this point-in-time release, the declared fork and terminal anchors are both height 1,620,000 with hash <code class="break-all">8d7d8a30d928d52e74dd68f453d99604e5c8290c3df88d182353d4abcc8c0300</code>. The protobuf source, generated binding and descriptor SHA-256 fields must match the files used by the structural verifier.</p>
+    <div class="card card-border mt-6 max-w-4xl bg-base-200"><div class="card-body gap-2">
+      <h3 class="card-title">Pinned protobuf decoder</h3>
+      <p class="text-sm text-base-content/75">The release pins <code>qrl.proto</code> SHA-256 <code class="break-all">0d70a3372c4668a1bf4fd42983ae01f2e0fb54b4030b808bbea78e5adadb23f0</code>, <code>qrl_pb2.py</code> SHA-256 <code class="break-all">a6d9fdd3d3490ae04171c4a6fd777bfc42ca2f38f73788893069cc366f7cd4d3</code> and its serialized descriptor SHA-256 <code class="break-all">9e65bd19e719a916f46ff2f3b9e5696996c2ae0203d0f9068e707395baf357f0</code>. The <a class="link link-primary" href="https://github.com/theQRL/qrl-v1-archive/tree/main/src/qrl_archive/vendor">archive source carries both files</a>. Check all three pins before decoding.</p>
+    </div></div>
+  </div>
+</section>
+
+<section class="border-t border-base-content/10 py-12 sm:py-16" aria-labelledby="download-checks">
+  <div class="container-site">
+    <p class="section-eyebrow">Download and authenticate</p>
+    <h2 id="download-checks" class="section-heading mt-2">Verify before extracting</h2>
+    <ol class="mt-6 max-w-4xl list-decimal space-y-4 pl-6 text-base-content/75">
+      <li>Get the release public key from <a class="link link-primary" href="https://github.com/theQRL/security/blob/2aef08563f4d177fb2773215a30d86029ed519f7/theqrl-release-key.pub">the pinned security repository commit</a>. Its file SHA-256 must be <code class="break-all">8cf05c32a7cb69dfe27e5137b27baedf4ab0008a0684f36e59aa2553ff8f0c5f</code>. Do not trust a key merely because the download succeeded.</li>
+      <li>Download <code>manifest.json</code> and <code>manifest.json.sig</code> from this release prefix. Verify the manifest with <a class="link link-primary" href="https://github.com/theQRL/qrlft">qrlft</a> and the separate manifest context shown below. The expected manifest SHA-256 for this release is <code class="break-all">b81739b982cdd4cd3082463598fac85b48e0fdf4fc887f1fea36dc40437a6e4b</code>.</li>
+      <li>Check the signed manifest's schema, product, tag and artifact context. Its artifact entries give basenames, sizes and SHA-256 digests. Download <code>archive-inventory.json</code> and <code>shards.json</code>; compare their exact bytes with the corresponding manifest entries. The inventory supplies the public object paths, SHA3-256 digests and whole block-stream digests. Compare every shard entry against both the index and inventory before using it.</li>
+      <li>Download only safe basenames from the signed index. Check each shard's byte count, SHA-256 and SHA3-256. Then run the pinned structural verifier to check framing, protobuf header numbers and hashes, previous-hash links, transaction oneof presence, duplicate block and transaction hashes, and the genesis and cutoff anchors.</li>
+    </ol>
+    <div class="card card-border mt-8 max-w-5xl bg-base-200"><div class="card-body gap-3">
+      <h3 class="card-title">Start a chain-only download</h3>
+      <p class="text-sm text-base-content/70">The following commands create a local directory. They fetch the small trust files first. Use a <code>qrlft</code> build with the reviewed full-file reader, including source commit <code>ed1f29f3e4743ba2f1429154ae31549c37e3a357</code>.</p>
+      <pre class="overflow-x-auto text-xs"><code>set -e
+export RELEASE_BASE=https://data.v1.theqrl.org/testnet/snapshots/testnet-snapshot-h1620000-8d7d8a30-r1
+mkdir -p qrl-testnet-1620000/payload
+cd qrl-testnet-1620000
+curl -fL --retry 4 -o manifest.json "$RELEASE_BASE/manifest.json"
+curl -fL --retry 4 -o manifest.json.sig "$RELEASE_BASE/manifest.json.sig"
+curl -fL --retry 4 -o theqrl-release-key.pub https://raw.githubusercontent.com/theQRL/security/2aef08563f4d177fb2773215a30d86029ed519f7/theqrl-release-key.pub
+python3 -c 'import hashlib,pathlib,sys; p=pathlib.Path("theqrl-release-key.pub"); sys.exit(0 if hashlib.sha256(p.read_bytes()).hexdigest()=="8cf05c32a7cb69dfe27e5137b27baedf4ab0008a0684f36e59aa2553ff8f0c5f" else 1)'
+python3 -c 'import hashlib,pathlib,sys; p=pathlib.Path("manifest.json"); sys.exit(0 if hashlib.sha256(p.read_bytes()).hexdigest()=="b81739b982cdd4cd3082463598fac85b48e0fdf4fc887f1fea36dc40437a6e4b" else 1)'
+git clone https://github.com/theQRL/qrlft.git qrlft-source
+git -C qrlft-source checkout ed1f29f3e4743ba2f1429154ae31549c37e3a357
+(cd qrlft-source &amp;&amp; go build -o ../qrlft-verify .)
+./qrlft-verify verify -a mldsa --context=qrl-v1-testnet-archive-release-manifest --sigfile=manifest.json.sig --pkfile=theqrl-release-key.pub manifest.json</code></pre>
+      <p class="text-sm text-base-content/70">This authenticates the release manifest. The release was signed with actions-mldsa-sign v3, which preserves the v2 manifest and context contract. Its artifact context is <code>qrl-v1-testnet-archive-release-signatures</code>; it is distinct from the manifest context. The separately available <a class="link link-primary" href="https://data.v1.theqrl.org/testnet/snapshots/testnet-snapshot-h1620000-8d7d8a30-r1/signatures.txt">signatures.txt</a> carries an ML-DSA-87 signature for each payload under the artifact context. The verified manifest and its artifact hashes authenticate the chain-only subset below. The <a class="link link-primary" href="https://github.com/theQRL/qrl-v1-archive/blob/main/release/LIVE-TESTNET-SNAPSHOT.md">full release verifier</a> also checks all payload signatures and derived data.</p>
+    </div></div>
+    <details class="card card-border mt-6 max-w-5xl bg-base-200"><summary class="card-body cursor-pointer font-semibold">Download and hash-check the index and all 163 shards</summary>
+      <div class="card-body pt-0">
+        <p class="text-sm text-base-content/70">Run this after the manifest signature command passes, from <code>qrl-testnet-1620000/</code>. It rejects unsafe paths, conflicting identities, duplicate names and digest mismatches. It never uses a directory listing from the data service.</p>
+        <pre class="overflow-x-auto text-xs"><code>python3 - &lt;&lt;'PY'
+from pathlib import Path
+from urllib.request import Request, urlopen
+import hashlib, json, os, re
+
+base = os.environ['RELEASE_BASE'].rstrip('/')
+root = Path('payload')
+manifest = json.loads(Path('manifest.json').read_bytes())
+def need(condition, message):
+    if not condition:
+        raise ValueError(message)
+
+need(manifest['schema'] == 'theqrl.release-manifest.v1', 'manifest schema')
+need(manifest['product'] == 'qrl-v1-testnet-archive', 'manifest product')
+need(manifest['tag'] == 'testnet-snapshot-h1620000-8d7d8a30-r1', 'manifest tag')
+need(manifest['context'] == 'qrl-v1-testnet-archive-release-signatures', 'manifest context')
+need(root.is_dir() and not root.is_symlink(), 'payload directory must be real')
+artifacts = {a['filename']: a for a in manifest['artifacts']}
+need(len(artifacts) == len(manifest['artifacts']), 'duplicate manifest filename')
+
+def digest(data, kind):
+    return hashlib.new(kind, data).hexdigest()
+
+def fetch(name, size, sha256, sha3=None):
+    need(bool(re.fullmatch(r'[A-Za-z0-9][A-Za-z0-9._-]*', name)), 'unsafe filename')
+    need(name not in ('.', '..') and 0 &lt; size &lt;= 67108864, 'invalid size or filename')
+    path = root / name
+    need(not path.is_symlink(), 'symlink is not a release file: ' + name)
+    if path.exists():
+        data = path.read_bytes()
+    else:
+        request = Request(base + '/' + name, headers={'User-Agent': 'Mozilla/5.0'})
+        with urlopen(request, timeout=120) as response:
+            data = response.read(size + 1)
+    need(len(data) == size and digest(data, 'sha256') == sha256, 'size or SHA-256: ' + name)
+    if sha3 is not None:
+        need(digest(data, 'sha3_256') == sha3, 'SHA3-256: ' + name)
+    if not path.exists():
+        with path.open('xb') as destination:
+            destination.write(data)
+    return data
+
+def signed_file(name):
+    item = artifacts[name]
+    return fetch(name, item['size'], item['sha256'])
+
+inventory = json.loads(signed_file('archive-inventory.json'))
+index = json.loads(signed_file('shards.json'))
+need(inventory['schema'] == 'qrl.v1.archive.snapshot-inventory.v2', 'inventory schema')
+need(inventory['tag'] == manifest['tag'], 'inventory tag')
+need(inventory['object_prefix'] == 'testnet/snapshots/' + manifest['tag'], 'object prefix')
+snapshot = inventory['snapshot']
+need(snapshot['network_id'] == index['network_id'] == 'testnet', 'network ID')
+need(snapshot['genesis_hash'] == index['genesis_hash'] == 'd6765d6e0af7e8b25bac587279999e16bbb0bd3038445934e2d9f3b24a89041e', 'genesis hash')
+need(snapshot['height'] == index['terminal_height'] == index['fork_height'] == 1620000, 'cutoff height')
+need(snapshot['hash'] == index['terminal_hash'] == index['fork_hash'] == '8d7d8a30d928d52e74dd68f453d99604e5c8290c3df88d182353d4abcc8c0300', 'cutoff hash')
+need(index['schema'] == 'qrl.v1.archive.shards.v1', 'shard index schema')
+need(index['block_stream_format'] == 'qrl-v1-block-stream-v1', 'block stream format')
+need(snapshot['block_count'] == index['block_count'] == 1620001, 'block count')
+need(snapshot['transaction_count'] == index['transaction_count'] == 1621730, 'transaction count')
+need(len(index['shards']) == 163, 'shard count')
+objects = {p['filename']: p for p in inventory['payloads']}
+need(len(objects) == len(inventory['payloads']), 'duplicate inventory filename')
+for name in ('shards.json',):
+    item = objects[name]
+    data = (root / name).read_bytes()
+    need(item['role'] == 'canonical_shard_index' and item['object_path'] == name, 'index mapping')
+    need(item['size'] == len(data) and item['sha256'] == digest(data, 'sha256'), 'index SHA-256')
+    need(item['sha3_256'] == digest(data, 'sha3_256'), 'index SHA3-256')
+
+next_height = 0
+names = set()
+for shard in index['shards']:
+    name = shard['name']
+    need(name not in names, 'duplicate shard name')
+    names.add(name)
+    need(shard['first_height'] == next_height, 'height gap')
+    need(shard['record_count'] == shard['last_height'] - next_height + 1, 'height range')
+    need(1 &lt;= shard['record_count'] &lt;= 10000, 'shard count')
+    item = objects[name]
+    need(item['role'] == 'canonical_block_shard' and item['object_path'] == name, 'shard object path')
+    need(item['size'] == shard['bytes'] and item['sha256'] == shard['sha256'], 'inventory SHA-256')
+    need(item['sha3_256'] == shard['sha3_256'], 'inventory SHA3-256')
+    need(artifacts[name]['size'] == shard['bytes'], 'manifest shard size')
+    need(artifacts[name]['sha256'] == shard['sha256'], 'manifest shard SHA-256')
+    fetch(name, shard['bytes'], shard['sha256'], shard['sha3_256'])
+    next_height = shard['last_height'] + 1
+need(next_height == 1620001, 'final height')
+print('PASS: 163 signed-index shards, heights 0..1620000, both file digests')
+PY</code></pre>
+      </div>
+    </details>
+    <div class="card card-border mt-6 max-w-5xl bg-base-200"><div class="card-body gap-3">
+      <h3 class="card-title">Run structural verification</h3>
+      <p class="text-sm text-base-content/70">Install a reviewed revision of <a class="link link-primary" href="https://github.com/theQRL/qrl-v1-archive">qrl-v1-archive</a> in a Python environment and run the command below from the directory containing <code>payload/</code>. Pin the tool revision you use and preserve it with your result. This verifies the pinned protobuf files and the entire chain structure. It does not claim historical consensus or proof-of-work verification.</p>
+      <pre class="overflow-x-auto text-xs"><code>git clone https://github.com/theQRL/qrl-v1-archive.git archive-tool
+python3 -m venv archive-venv
+. archive-venv/bin/activate
+python -m pip install -e ./archive-tool
+qrl-archive verify \
+  --canonical ./payload \
+  --expect-network-id testnet \
+  --expect-genesis-hash d6765d6e0af7e8b25bac587279999e16bbb0bd3038445934e2d9f3b24a89041e \
+  --expect-fork-height 1620000 \
+  --expect-fork-hash 8d7d8a30d928d52e74dd68f453d99604e5c8290c3df88d182353d4abcc8c0300 \
+  --expect-terminal-height 1620000 \
+  --expect-terminal-hash 8d7d8a30d928d52e74dd68f453d99604e5c8290c3df88d182353d4abcc8c0300 \
+  --mode structural</code></pre>
+    </div></div>
+  </div>
+</section>
+
+<section class="border-t border-base-content/10 py-12 sm:py-16" aria-labelledby="reconstruct">
+  <div class="container-site">
+    <p class="section-eyebrow">Exact-byte extraction</p>
+    <h2 id="reconstruct" class="section-heading mt-2">Rebuild one ordered block stream</h2>
+    <p class="mt-4 max-w-4xl text-base-content/75">Run this after the signed download and structural check pass. It writes <code>blocks-framed.bin</code> as the ASCII domain marker <code>qrl-v1-canonical-block-bytes-v1</code> plus one NUL byte, followed by each block's <code>uint64 height</code>, <code>uint64 byte length</code> and exact original protobuf bytes. The marker and frames are the whole-stream digest input recorded in the signed inventory. The expected SHA-256 is <code class="break-all">5d8437458b44ee6fac10838a169a1ffd943f7da912eabdb5c04f33256613eed5</code>; SHA3-256 is <code class="break-all">72c9c5ea9b8a8467806fad16b0694561ed6d1f8128d459af7f5796c44b62f8cd</code>. These values check the byte stream after you authenticate the manifest. The file is an archive transport stream, not a QRL node database.</p>
+    <details class="card card-border mt-6 max-w-5xl bg-base-200" open><summary class="card-body cursor-pointer font-semibold">Runnable Python 3 extraction</summary>
+      <div class="card-body pt-0">
+        <p class="text-sm text-base-content/70">Run from <code>qrl-testnet-1620000/</code>. This uses only the Python standard library, checks file bounds and digests again, refuses an existing output, and removes a partial output on failure. It checks both final whole-stream hashes against the manifest-authenticated inventory.</p>
+        <pre class="overflow-x-auto text-xs"><code>python3 - &lt;&lt;'PY'
+from pathlib import Path
+import hashlib, io, json, re, struct
+
+root = Path('payload')
+if not root.is_dir() or root.is_symlink():
+    raise ValueError('payload directory must be real')
+index = json.loads((root / 'shards.json').read_bytes())
+inventory = json.loads((root / 'archive-inventory.json').read_bytes())
+expected = inventory['snapshot']
+domain = b'qrl-v1-canonical-block-bytes-v1\x00'
+out = Path('blocks-framed.bin')
+if out.exists():
+    raise FileExistsError(out)
+sha256, sha3 = hashlib.sha256(), hashlib.sha3_256()
+next_height = 0
+
+def read_exact(stream, size):
+    data = stream.read(size)
+    if len(data) != size:
+        raise ValueError('truncated shard')
+    return data
+
+def u32(stream):
+    return struct.unpack('&lt;I', read_exact(stream, 4))[0]
+
+def u64(stream):
+    return struct.unpack('&lt;Q', read_exact(stream, 8))[0]
+
+def emit(destination, data):
+    destination.write(data)
+    sha256.update(data)
+    sha3.update(data)
+
+try:
+    with out.open('xb') as destination:
+        emit(destination, domain)
+        for shard in index['shards']:
+            name = shard['name']
+            if not re.fullmatch(r'[A-Za-z0-9][A-Za-z0-9._-]*', name) or name in ('.', '..'):
+                raise ValueError('unsafe shard filename')
+            path = root / name
+            if path.is_symlink():
+                raise ValueError('symlink shard: ' + name)
+            data = path.read_bytes()
+            if not (len(data) == shard['bytes'] &lt;= 67108864):
+                raise ValueError('shard size mismatch: ' + shard['name'])
+            if hashlib.sha256(data).hexdigest() != shard['sha256']:
+                raise ValueError('SHA-256 mismatch: ' + shard['name'])
+            if hashlib.sha3_256(data).hexdigest() != shard['sha3_256']:
+                raise ValueError('SHA3-256 mismatch: ' + shard['name'])
+            stream = io.BytesIO(data)
+            if read_exact(stream, 8) != b'QRLV1BLK' or u32(stream) != 1:
+                raise ValueError('unsupported shard: ' + shard['name'])
+            network_length = u32(stream)
+            if not 1 &lt;= network_length &lt;= 128:
+                raise ValueError('bad network length')
+            network = read_exact(stream, network_length).decode('utf-8')
+            genesis_length = u32(stream)
+            if genesis_length != 32:
+                raise ValueError('bad genesis length')
+            genesis = read_exact(stream, 32).hex()
+            first, last, count = u64(stream), u64(stream), u64(stream)
+            if network != index['network_id'] or genesis != index['genesis_hash']:
+                raise ValueError('shard chain identity mismatch')
+            if (first, last, count) != (shard['first_height'], shard['last_height'], shard['record_count']):
+                raise ValueError('shard index mismatch')
+            if first != next_height or not 1 &lt;= count &lt;= 10000 or last != first + count - 1:
+                raise ValueError('gap or overlap in heights')
+            for _ in range(count):
+                height, length = u64(stream), u64(stream)
+                if height != next_height or not 1 &lt;= length &lt;= len(data) - stream.tell():
+                    raise ValueError('bad block record')
+                raw_block = read_exact(stream, length)
+                emit(destination, struct.pack('&lt;QQ', height, length))
+                emit(destination, raw_block)
+                next_height += 1
+            if stream.read(1):
+                raise ValueError('trailing shard bytes')
+        if next_height != index['block_count'] or next_height != expected['block_count']:
+            raise ValueError('incorrect final height')
+        if sha256.hexdigest() != expected['block_stream_sha256']:
+            raise ValueError('whole-stream SHA-256 mismatch')
+        if sha3.hexdigest() != expected['block_stream_sha3_256']:
+            raise ValueError('whole-stream SHA3-256 mismatch')
+except BaseException:
+    out.unlink(missing_ok=True)
+    raise
+print('PASS:', next_height, 'original block values; stream SHA-256', sha256.hexdigest())
+PY</code></pre>
+      </div>
+    </details>
+    <p class="mt-6 max-w-4xl text-base-content/75">To extract block <em>n</em> from the resulting file, skip the domain marker, then read successive <code>&lt;QQ&gt;</code> height and length pairs. The next <code>length</code> bytes are that block's exact stored protobuf value. Reject a skipped, repeated or out-of-range height. Decode with the pinned <code>qrl_pb2.Block</code> only after preserving the raw slice. Do not reconstruct original bytes with <code>SerializeToString()</code>.</p>
+    <div class="card card-border mt-8 max-w-4xl bg-base-200"><div class="card-body gap-3">
+      <h3 class="card-title">What further recovery would require</h3>
+      <p class="text-sm text-base-content/75">The <a class="link link-primary" href="https://github.com/theQRL/qrl-v1-archive/blob/main/src/qrl_archive/block_stream_v1.py">structural reader</a> provides verified records and exact byte offsets. The <a class="link link-primary" href="https://github.com/theQRL/qrl-v1-archive/blob/main/src/qrl_archive/sqlite_v1.py">derive-sqlite</a> command rebuilds block, transaction and address-event tables, but currently reports <code>INCOMPLETE</code> with exit code 4. It does not replay all historical consensus and state rules or reproduce the observed final-address-state table. Use the separately signed snapshot SQLite and query files for the explorer's cutoff balances. A running QRL node requires a separate, tested restore or replay path that produces compatible LevelDB state and proves the expected tip. The canonical shards remain usable as an offline historical record without that path.</p>
+      <details><summary class="cursor-pointer text-sm font-semibold">Optional SQLite derivation command</summary>
+        <pre class="mt-3 overflow-x-auto text-xs"><code>qrl-archive derive-sqlite \
+  --canonical ./payload \
+  --expect-network-id testnet \
+  --expect-genesis-hash d6765d6e0af7e8b25bac587279999e16bbb0bd3038445934e2d9f3b24a89041e \
+  --expect-fork-height 1620000 \
+  --expect-fork-hash 8d7d8a30d928d52e74dd68f453d99604e5c8290c3df88d182353d4abcc8c0300 \
+  --expect-terminal-height 1620000 \
+  --expect-terminal-hash 8d7d8a30d928d52e74dd68f453d99604e5c8290c3df88d182353d4abcc8c0300 \
+  --output ./testnet.partial.sqlite</code></pre>
+        <p class="mt-3 text-sm text-base-content/70">The <code>.partial.sqlite</code> suffix and nonzero exit are deliberate. Do not treat this derivative as complete historical state.</p>
+      </details>
+    </div></div>
+  </div>
+</section>
+
+      <section id="snapshot-result" class="container-site pb-12 sm:pb-16" hidden aria-live="polite"></section>
+    </main>
+
+    <footer class="footer footer-center border-t border-base-content/10 bg-base-200 p-6 text-base text-base-content/60 sm:text-sm">
+      <aside><p id="snapshot-footer">QRL v1 testnet archive rehearsal. Checking snapshot release details.</p></aside>
+    </footer>
+    <script type="module" src="/assets/snapshot-page.js"></script>
+  </body>
+</html>

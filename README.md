@@ -2,7 +2,7 @@
 
 > **This is a test of the archival process, not the QRL v1 mainnet archive.** The signed point-in-time snapshot records public testnet through block 1,620,000. The public testnet and mainnet remain live. Later blocks and current balances are outside this snapshot.
 
-This repository holds the read-only explorer for QRL v1 archive releases. The published snapshot is `testnet-snapshot-h1620000-8d7d8a30-r1`; see the [release page](https://archive.v1.theqrl.org/testnet/release/) and [data index](https://data.v1.theqrl.org/index.json). Every page and search result must identify the snapshot and cutoff. This release is not a terminal rehearsal or final archive.
+This repository holds the read-only explorer for QRL v1 archive releases. The published snapshot is `testnet-snapshot-h1620000-8d7d8a30-r1`; see the [release page](https://archive.v1.theqrl.org/testnet/release/), [shard format and reconstruction guide](https://archive.v1.theqrl.org/testnet/shard-format/), and [data index](https://data.v1.theqrl.org/index.json). Every page and search result must identify the snapshot and cutoff. This release is not a terminal rehearsal or final archive.
 
 ## Current scope
 
@@ -18,7 +18,7 @@ The public hosts are [archive.v1.theqrl.org](https://archive.v1.theqrl.org/) for
 
 `public/` is the static Pages output. It uses the QRL component library's Quantum Dawn theme (`qrl-dawn` in source). The published testnet pages provide block height/hash, transaction hash, and address history/balance lookups at the cutoff. The browser checks hashes of query files it reads; the [release page](https://archive.v1.theqrl.org/testnet/release/) provides independent signature verification instructions. No live node or legacy explorer API serves these lookups.
 
-Run `npm ci && npm run build` after editing the theme or `src/build-pages.mjs`. The generated lookup pages are checked into `public/` so the warning remains visible even if Pages serves that directory without a build step. `REHEARSAL-STATUS.md` records the current state; the sibling archive repository documents the signed snapshot and separate unsigned transport-test objects.
+Run `npm ci && npm run build` after editing the theme, `src/build-pages.mjs`, or `src/shard-format.html`. The generated lookup and format pages are checked into `public/` so the warning remains visible even if Pages serves that directory without a build step. `REHEARSAL-STATUS.md` records the current state; the sibling archive repository documents the signed snapshot and separate unsigned transport-test objects.
 
 ## Siblings
 

@@ -1,4 +1,4 @@
-import { copyFile, mkdir, writeFile } from 'node:fs/promises';
+import { copyFile, mkdir, readFile, writeFile } from 'node:fs/promises';
 
 const outputRoot = new URL('../public/testnet/', import.meta.url);
 
@@ -128,8 +128,19 @@ const pages = [
           <pre class="overflow-x-auto whitespace-pre-wrap break-all text-xs"><code>qrlft verify -a mldsa --context=qrl-v1-testnet-archive-release-manifest --sigfile=manifest.json.sig --pkfile=theqrl-release-key.pub manifest.json</code></pre>
           <p class="text-sm text-base-content/70">Check the key digest shown above. Each artefact signature in <code>signatures.txt</code> uses the separate <code>qrl-v1-testnet-archive-release-signatures</code> context. Verify every signed artefact against its manifest digest before trusting the complete release.</p>
         </div></div>
+        <div class="card card-border mt-6 max-w-4xl bg-base-200"><div class="card-body gap-3">
+          <h3 class="card-title">Reconstruct the block history</h3>
+          <p class="text-sm text-base-content/70">The canonical archive has 163 ordered block shards. The format guide gives the byte layout, signed download checks and exact-byte reconstruction procedure.</p>
+          <div class="card-actions"><a class="btn btn-outline" href="/testnet/shard-format/">Read the shard format guide</a></div>
+        </div></div>
         <p class="mt-6 max-w-3xl text-sm text-base-content/65">A point-in-time snapshot records testnet only through its stated cutoff. The public testnet can continue producing later blocks.</p>
       </section>`,
+  },
+  {
+    slug: 'shard-format',
+    title: 'Reconstruct the block history',
+    intro: 'Read and verify every canonical block shard, then recover the exact stored protobuf bytes for each testnet block through height 1,620,000.',
+    content: await readFile(new URL('./shard-format.html', import.meta.url), 'utf8'),
   },
 ];
 
@@ -176,6 +187,7 @@ function render(page) {
             <a class="btn btn-outline btn-sm min-h-12 sm:min-h-9" href="/testnet/">Testnet status</a>
             <a class="btn btn-outline btn-sm min-h-12 sm:min-h-9" href="/testnet/explore/">Lookups</a>
             <a class="btn btn-outline btn-sm min-h-12 sm:min-h-9" href="/testnet/release/">Release status</a>
+            <a class="btn btn-outline btn-sm min-h-12 sm:min-h-9" href="/testnet/shard-format/">Shard format</a>
           </nav>
         </div>
       </section>
